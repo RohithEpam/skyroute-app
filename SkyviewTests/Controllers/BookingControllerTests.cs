@@ -12,9 +12,6 @@ namespace SkyrouteTests.Controllers
         private readonly Mock<IBookingService> _bookingService = new();
         private readonly Mock<ILogger<BookingsController>> _logger = new();
 
-        public BookingControllerTests()
-        {
-        }
 
         [Fact]
         public void Constructor_ThrowsArgumentNullException_WhenBookigServiceIsNull()
