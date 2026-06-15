@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="../SkyvirwTests/SkyrouteTests.csproj" Id="7acaa320-26b0-4beb-bce9-72e35908c3b8" />
+  <Project Path="../Sky_View_Tests/Sky_View_Tests.csproj" Id="7acaa320-26b0-4beb-bce9-72e35908c3b8" />
   <Project Path="sky route app.csproj" />
 </Solution>
