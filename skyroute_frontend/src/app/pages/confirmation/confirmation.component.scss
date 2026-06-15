@@ -1,0 +1,112 @@
+$primary: #1d4ed8;
+
+.confirm-page {
+  min-height: calc(100vh - 60px);
+  background: linear-gradient(160deg, #f0fdf4, #eff6ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+.confirm-card {
+  background: white;
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 460px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+
+  &__icon {
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #15803d;
+    margin-bottom: 0.4rem;
+  }
+
+  &__subtitle {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+
+  &__ref {
+    background: #eff6ff;
+    border: 1.5px dashed #93c5fd;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__ref-label {
+    display: block;
+    font-size: 0.75rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+  }
+
+  &__ref-code {
+    font-size: 2rem;
+    font-weight: 800;
+    color: $primary;
+    letter-spacing: 0.15em;
+    font-family: monospace;
+  }
+}
+
+.confirm-details {
+  text-align: left;
+  margin-bottom: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  overflow: hidden;
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid #f3f4f6;
+
+    &:last-child { border-bottom: none; }
+    &:nth-child(even) { background: #f9fafb; }
+  }
+
+  &__key {
+    font-size: 0.85rem;
+    color: #6b7280;
+  }
+
+  &__val {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1f2937;
+
+    &--price {
+      color: $primary;
+      font-size: 1rem;
+    }
+  }
+}
+
+.btn-secondary {
+  width: 100%;
+  background: white;
+  color: $primary;
+  border: 1.5px solid $primary;
+  font-weight: 600;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-bottom: 0.75rem;
+  transition: background 0.2s;
+
+  &:hover { background: #eff6ff; }
+}

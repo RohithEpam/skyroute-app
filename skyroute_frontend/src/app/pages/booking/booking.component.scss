@@ -1,0 +1,210 @@
+$primary: #1d4ed8;
+$primary-dark: #1e3a8a;
+$gray-border: #e5e7eb;
+
+.booking-page {
+  min-height: calc(100vh - 60px);
+  background: #f0f4ff;
+  padding: 2.5rem 1rem;
+
+  &__container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  &__back {
+    background: none;
+    border: none;
+    color: $primary;
+    font-size: 0.875rem;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-bottom: 1.25rem;
+    display: block;
+    padding: 0;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 1.25rem;
+  }
+}
+
+// Flight summary banner
+.flight-summary {
+  background: white;
+  border: 1.5px solid #bfdbfe;
+  border-left: 4px solid $primary;
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+
+  &__badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    &--global { background: #dbeafe; color: #1d4ed8; }
+    &--budget  { background: #ffedd5; color: #c2410c; }
+  }
+
+  &__body { flex: 1; }
+
+  &__times {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  &__hour {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  &__arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+  }
+
+  &__duration {
+    font-size: 0.7rem;
+    color: #6b7280;
+  }
+
+  &__line {
+    color: $primary;
+    font-size: 1rem;
+  }
+
+  &__meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: #6b7280;
+  }
+
+  &__price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  &__total {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: $primary;
+  }
+
+  &__pax {
+    font-size: 0.75rem;
+    color: #9ca3af;
+  }
+}
+
+// Each passenger card
+.passenger-card {
+  background: white;
+  border-radius: 0.75rem;
+  border: 1px solid $gray-border;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1.25rem;
+    background: #f8faff;
+    border-bottom: 1px solid $gray-border;
+  }
+
+  &__badge {
+    width: 28px;
+    height: 28px;
+    background: $primary;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1f2937;
+    flex: 1;
+  }
+
+  &__tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    background: #dbeafe;
+    color: $primary;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  &__fields {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    @media (max-width: 580px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// Summary box before submit
+.booking-summary {
+  background: white;
+  border-radius: 0.75rem;
+  border: 1px solid $gray-border;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+    font-size: 0.875rem;
+    color: #6b7280;
+    border-bottom: 1px solid #f3f4f6;
+
+    &:last-child { border-bottom: none; }
+
+    &--total {
+      font-size: 1rem;
+      font-weight: 700;
+      color: $primary;
+      padding-top: 0.6rem;
+    }
+  }
+}

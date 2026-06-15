@@ -1,0 +1,72 @@
+<div class="results-page">
+  <div class="results-page__container">
+
+    <div class="results-page__header">
+      <div>
+        <h2 class="results-page__title">Available Flights</h2>
+        <p class="results-page__meta">
+          <span>{{ flights.length }} result(s)</span>
+          <span class="results-page__dot">·</span>
+          <span>{{ cabinClass }}</span>
+          <span class="results-page__dot">·</span>
+          <span>{{ passengers }} passenger(s)</span>
+        </p>
+      </div>
+      <button class="results-page__back" (click)="goBack()">← Modify Search</button>
+    </div>
+
+    <div *ngIf="flights.length === 0" class="results-page__empty">
+      <span class="results-page__empty-icon">🔍</span>
+      <p>No flights found for your search criteria.</p>
+      <button class="btn-primary" style="width:auto; margin-top:1rem; padding: 0.6rem 1.5rem" (click)="goBack()">
+        Try Another Search
+      </button>
+    </div>
+
+    <div class="flight-list">
+      <div *ngFor="let flight of flights" class="flight-card">
+        <div class="flight-card__left">
+          <div class="flight-card__header">
+            <span class="flight-card__badge"
+              [class.flight-card__badge--global]="flight.provider === 'GlobalAir'"
+              [class.flight-card__badge--budget]="flight.provider === 'BudgetWings'">
+              {{ flight.provider }}
+            </span>
+            <span class="flight-card__number">{{ flight.flightNumber }}</span>
+          </div>
+
+          <div class="flight-card__timeline">
+            <div class="flight-card__time-block">
+              <span class="flight-card__hour">{{ flight.departureTime | date:'HH:mm' }}</span>
+              <span class="flight-card__date">{{ flight.departureTime | date:'MMM d' }}</span>
+            </div>
+            <div class="flight-card__route">
+              <span class="flight-card__duration">{{ getDuration(flight.departureTime, flight.arrivalTime) }}</span>
+              <div class="flight-card__line">
+                <div class="flight-card__dot"></div>
+                <div class="flight-card__dash"></div>
+                <span class="flight-card__plane">✈</span>
+                <div class="flight-card__dash"></div>
+                <div class="flight-card__dot"></div>
+              </div>
+              <span class="flight-card__nonstop">Nonstop</span>
+            </div>
+            <div class="flight-card__time-block flight-card__time-block--right">
+              <span class="flight-card__hour">{{ flight.arrivalTime | date:'HH:mm' }}</span>
+              <span class="flight-card__date">{{ flight.arrivalTime | date:'MMM d' }}</span>
+            </div>
+          </div>
+
+          <div class="flight-card__cabin">{{ flight.cabinClass }} Class</div>
+        </div>
+
+        <div class="flight-card__right">
+          <div class="flight-card__total">${{ flight.totalPrice | number:'1.2-2' }}</div>
+          <div class="flight-card__per">${{ flight.pricePerPassenger | number:'1.2-2' }} × {{ passengers }} pax</div>
+          <button class="flight-card__book" (click)="selectFlight(flight)">Book Now →</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

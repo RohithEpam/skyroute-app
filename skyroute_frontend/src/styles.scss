@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$primary: #1d4ed8;
+$primary-dark: #1e3a8a;
+$danger: #dc2626;
+$gray-light: #f9fafb;
+$gray-border: #e5e7eb;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: $gray-light;
+  color: #1f2937;
+}
+
+// Reusable globals
+.btn-primary {
+  width: 100%;
+  background-color: $primary;
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-dark;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.error-box {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: $danger;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+  }
+
+  select, input {
+    border: 1px solid $gray-border;
+    border-radius: 0.5rem;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.95rem;
+    background: white;
+    color: #1f2937;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      box-shadow: 0 0 0 3px rgba($primary, 0.15);
+    }
+  }
+
+  .field-error {
+    font-size: 0.75rem;
+    color: $danger;
+  }
+}

@@ -1,0 +1,255 @@
+$primary: #1d4ed8;
+$primary-dark: #1e3a8a;
+$gray-border: #e5e7eb;
+
+.bdetails-page {
+  min-height: calc(100vh - 60px);
+  background: #f0f4ff;
+  padding: 2.5rem 1rem;
+
+  &__container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  &__back {
+    background: none;
+    border: none;
+    color: $primary;
+    font-size: 0.875rem;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-bottom: 1.25rem;
+    display: block;
+    padding: 0;
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.25rem;
+  }
+
+  &__sub {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.bdetails-lookup {
+  background: white;
+  border-radius: 0.75rem;
+  border: 1px solid $gray-border;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+
+  &__row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+
+    .form-group { flex: 1; }
+  }
+
+  &__btn {
+    background: $primary;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.55rem 1.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    white-space: nowrap;
+    height: 38px;
+    transition: background 0.2s;
+
+    &:hover:not(:disabled) { background: $primary-dark; }
+    &:disabled { opacity: 0.5; cursor: not-allowed; }
+  }
+}
+
+.bdetails-card {
+  background: white;
+  border-radius: 1rem;
+  border: 1px solid $gray-border;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+
+  &__header {
+    background: linear-gradient(135deg, $primary, $primary-dark);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__ref {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  &__ref-label {
+    font-size: 0.75rem;
+    color: #bfdbfe;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__ref-id {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: white;
+    font-family: monospace;
+  }
+
+  &__airline {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+
+    &--global { background: #dbeafe; color: #1d4ed8; }
+    &--budget  { background: #ffedd5; color: #c2410c; }
+  }
+}
+
+.bdetails-section {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid $gray-border;
+
+  &:last-child { border-bottom: none; }
+
+  &__title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #9ca3af;
+    margin-bottom: 0.9rem;
+  }
+}
+
+.bdetails-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+
+  @media (max-width: 540px) { grid-template-columns: 1fr; }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  &__label {
+    font-size: 0.75rem;
+    color: #9ca3af;
+  }
+
+  &__value {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1f2937;
+
+    &--mono { font-family: monospace; }
+  }
+}
+
+.bdetails-route {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  background: #f8faff;
+  border-bottom: 1px solid $gray-border;
+  gap: 1rem;
+
+  &__airport {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    &--right { align-items: flex-end; }
+  }
+
+  &__code {
+    font-size: 2rem;
+    font-weight: 800;
+    color: $primary;
+    line-height: 1;
+  }
+
+  &__city {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-top: 0.2rem;
+  }
+
+  &__country {
+    font-size: 0.75rem;
+    color: #9ca3af;
+  }
+
+  &__middle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+
+  &__duration {
+    font-size: 0.75rem;
+    color: #6b7280;
+  }
+
+  &__line {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    gap: 3px;
+    color: #9ca3af;
+  }
+
+  &__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #9ca3af;
+  }
+
+  &__dash {
+    flex: 1;
+    height: 1px;
+    background: #d1d5db;
+    max-width: 50px;
+  }
+
+  &__plane { color: $primary; font-size: 1.1rem; }
+
+  &__nonstop {
+    font-size: 0.65rem;
+    color: #10b981;
+    font-weight: 600;
+  }
+}
+
+.bdetails-empty {
+  text-align: center;
+  padding: 3rem;
+  color: #9ca3af;
+}
+
+.btn-primary {
+  display: block;
+  margin: 1.25rem 1.5rem;
+  width: calc(100% - 3rem);
+}

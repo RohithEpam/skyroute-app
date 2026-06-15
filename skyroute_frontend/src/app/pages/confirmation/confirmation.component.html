@@ -1,0 +1,56 @@
+<div class="confirm-page">
+  <div class="confirm-card">
+
+    <div class="confirm-card__icon">✅</div>
+    <h2 class="confirm-card__title">Booking Confirmed!</h2>
+    <p class="confirm-card__subtitle">A confirmation has been recorded for <strong>{{ passengerName }}</strong>.</p>
+
+    <!-- Reference Code highlight -->
+    <div class="confirm-card__ref">
+      <span class="confirm-card__ref-label">Reference Code</span>
+      <span class="confirm-card__ref-code">{{ booking?.referenceCode }}</span>
+    </div>
+
+    <!-- Details table -->
+    <div class="confirm-details">
+      <div class="confirm-details__row">
+        <span class="confirm-details__key">Booking ID</span>
+        <span class="confirm-details__val">#{{ booking?.id }}</span>
+      </div>
+      <div class="confirm-details__row">
+        <span class="confirm-details__key">Passenger</span>
+        <span class="confirm-details__val">{{ passengerName }}</span>
+      </div>
+      <div class="confirm-details__row">
+        <span class="confirm-details__key">Flight</span>
+        <span class="confirm-details__val">{{ flight?.flightNumber }}</span>
+      </div>
+      <div class="confirm-details__row">
+        <span class="confirm-details__key">Airline</span>
+        <span class="confirm-details__val">{{ flight?.provider }}</span>
+      </div>
+      <div class="confirm-details__row">
+        <span class="confirm-details__key">Departure</span>
+        <span class="confirm-details__val">{{ flight?.departureTime | date:'EEE, MMM d · HH:mm' }}</span>
+      </div>
+      <div class="confirm-details__row">
+        <span class="confirm-details__key">Arrival</span>
+        <span class="confirm-details__val">{{ flight?.arrivalTime | date:'EEE, MMM d · HH:mm' }}</span>
+      </div>
+      <div class="confirm-details__row">
+        <span class="confirm-details__key">Cabin</span>
+        <span class="confirm-details__val">{{ flight?.cabinClass }} Class</span>
+      </div>
+      <div class="confirm-details__row">
+        <span class="confirm-details__key">Total Paid</span>
+        <span class="confirm-details__val confirm-details__val--price">${{ flight?.totalPrice | number:'1.2-2' }}</span>
+      </div>
+    </div>
+    <button class="btn-secondary" (click)="viewBooking()">
+  View Booking Details
+</button>
+<button class="btn-primary" (click)="searchAgain()">
+  Search Another Flight
+</button>
+  </div>
+</div>

@@ -1,0 +1,121 @@
+<div class="booking-page">
+  <div class="booking-page__container">
+
+    <button class="booking-page__back" (click)="goBack()">← Back to Results</button>
+    <h2 class="booking-page__title">Complete Your Booking</h2>
+
+    <!-- Flight Summary Banner -->
+    <div class="flight-summary">
+      <div class="flight-summary__badge"
+        [class.flight-summary__badge--global]="flight?.provider === 'GlobalAir'"
+        [class.flight-summary__badge--budget]="flight?.provider === 'BudgetWings'">
+        {{ flight?.provider }}
+      </div>
+      <div class="flight-summary__body">
+        <div class="flight-summary__times">
+          <span class="flight-summary__hour">{{ flight?.departureTime | date:'HH:mm' }}</span>
+          <div class="flight-summary__arrow">
+            <span class="flight-summary__duration">
+              {{ getDuration(flight?.departureTime!, flight?.arrivalTime!) }}
+            </span>
+            <div class="flight-summary__line">✈</div>
+          </div>
+          <span class="flight-summary__hour">{{ flight?.arrivalTime | date:'HH:mm' }}</span>
+        </div>
+        <div class="flight-summary__meta">
+          <span>{{ flight?.flightNumber }}</span>
+          <span>{{ flight?.cabinClass }} Class</span>
+          <span>{{ flight?.departureTime | date:'EEE, MMM d' }}</span>
+        </div>
+      </div>
+      <div class="flight-summary__price">
+        <span class="flight-summary__total">${{ flight?.totalPrice | number:'1.2-2' }}</span>
+        <span class="flight-summary__pax">for {{ passengers }} passenger(s)</span>
+      </div>
+    </div>
+
+    <div *ngIf="error" class="error-box">{{ error }}</div>
+
+    <!-- Dynamic Passenger Forms -->
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div formArrayName="customerDetails">
+
+        <div
+          *ngFor="let passenger of customerDetails.controls; let i = index"
+          [formGroupName]="i"
+          class="passenger-card">
+
+          <!-- Passenger header -->
+          <div class="passenger-card__header">
+            <div class="passenger-card__badge">{{ i + 1 }}</div>
+            <h3 class="passenger-card__title">
+              {{ i === 0 ? 'Primary Passenger' : 'Passenger ' + (i + 1) }}
+            </h3>
+            <span class="passenger-card__tag" *ngIf="i === 0">Lead</span>
+          </div>
+
+          <!-- Fields -->
+          <div class="passenger-card__fields">
+
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" formControlName="fullName" placeholder="e.g. John Doe" />
+              <span *ngIf="isInvalid(i, 'fullName')" class="field-error">
+                Full name must be at least 2 characters.
+              </span>
+            </div>
+
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" formControlName="email" placeholder="e.g. john@example.com" />
+              <span *ngIf="isInvalid(i, 'email')" class="field-error">
+                Please enter a valid email address.
+              </span>
+            </div>
+
+            <div class="passenger-card__grid">
+              <div class="form-group">
+                <label>Document Number</label>
+                <input type="text" formControlName="documentNumber"
+                  placeholder="Passport or National ID" />
+                <span *ngIf="isInvalid(i, 'documentNumber')" class="field-error">
+                  Minimum 5 characters required.
+                </span>
+              </div>
+              <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" formControlName="phoneNumber"
+                  placeholder="+91 98765 43210" />
+                <span *ngIf="isInvalid(i, 'phoneNumber')" class="field-error">
+                  Minimum 5 characters required.
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary before submit -->
+      <div class="booking-summary">
+        <div class="booking-summary__row">
+          <span>Total Passengers</span>
+          <span>{{ passengers }}</span>
+        </div>
+        <div class="booking-summary__row">
+          <span>Airline</span>
+          <span>{{ flight?.provider }}</span>
+        </div>
+        <div class="booking-summary__row booking-summary__row--total">
+          <span>Total Price</span>
+          <span>${{ flight?.totalPrice | number:'1.2-2' }}</span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary" [disabled]="loading">
+        {{ loading ? 'Confirming Booking...' : 'Confirm Booking for ' + passengers + ' Passenger(s)' }}
+      </button>
+    </form>
+
+  </div>
+</div>

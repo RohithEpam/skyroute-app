@@ -1,0 +1,145 @@
+<div class="bdetails-page">
+  <div class="bdetails-page__container">
+
+    <button class="bdetails-page__back" (click)="goHome()">← Back to Search</button>
+    <h2 class="bdetails-page__title">Find My Booking</h2>
+    <p class="bdetails-page__sub">Enter your booking ID to retrieve full flight details.</p>
+
+    <!-- Search form -->
+    <form [formGroup]="form" (ngSubmit)="fetch()" class="bdetails-lookup">
+      <div class="bdetails-lookup__row">
+        <div class="form-group">
+          <label>Booking ID</label>
+          <input type="number" formControlName="bookingId" placeholder="e.g. 1" min="1" />
+          <span *ngIf="form.get('bookingId')?.invalid && form.get('bookingId')?.touched"
+            class="field-error">Please enter a valid booking ID.</span>
+        </div>
+        <button type="submit" class="bdetails-lookup__btn" [disabled]="form.invalid || loading">
+          {{ loading ? 'Fetching...' : 'Get Booking' }}
+        </button>
+      </div>
+    </form>
+
+    <!-- Error -->
+    <div *ngIf="error" class="error-box">{{ error }}</div>
+
+    <!-- Result card -->
+    <div *ngIf="booking" class="bdetails-card">
+
+      <!-- Header -->
+      <div class="bdetails-card__header">
+        <div class="bdetails-card__ref">
+          <span class="bdetails-card__ref-label">Booking confirmed</span>
+          <span class="bdetails-card__ref-id">#{{ booking.id }}</span>
+        </div>
+        <span class="bdetails-card__airline"
+          [class.bdetails-card__airline--global]="booking.airLine === 'GlobalAir'"
+          [class.bdetails-card__airline--budget]="booking.airLine === 'BudgetWings'">
+          {{ booking.airLine }}
+        </span>
+      </div>
+
+      <!-- Passenger info -->
+      <div class="bdetails-section">
+        <h3 class="bdetails-section__title">Passenger</h3>
+        <div class="bdetails-grid">
+          <div class="bdetails-grid__item">
+            <span class="bdetails-grid__label">Full Name</span>
+            <span class="bdetails-grid__value">{{ booking.fullName }}</span>
+          </div>
+          <div class="bdetails-grid__item">
+            <span class="bdetails-grid__label">Email</span>
+            <span class="bdetails-grid__value">{{ booking.email }}</span>
+          </div>
+          <div class="bdetails-grid__item">
+            <span class="bdetails-grid__label">Phone</span>
+            <span class="bdetails-grid__value">{{ booking.phoneNumber }}</span>
+          </div>
+          <div class="bdetails-grid__item">
+            <span class="bdetails-grid__label">Booking Date</span>
+            <span class="bdetails-grid__value">{{ booking.bookingDate | date:'MMM d, yyyy' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flight route banner -->
+      <div class="bdetails-route">
+        <div class="bdetails-route__airport">
+          <span class="bdetails-route__code">
+            {{ booking.flight.departureAirport.code }}
+          </span>
+          <span class="bdetails-route__city">
+            {{ booking.flight.departureAirport.city }}
+          </span>
+          <span class="bdetails-route__country">
+            {{ booking.flight.departureAirport.country }}
+          </span>
+        </div>
+
+        <div class="bdetails-route__middle">
+          <span class="bdetails-route__duration">
+            {{ getDuration(booking.flight.departureTime, booking.flight.arrivalTime) }}
+          </span>
+          <div class="bdetails-route__line">
+            <div class="bdetails-route__dot"></div>
+            <div class="bdetails-route__dash"></div>
+            <span class="bdetails-route__plane">✈</span>
+            <div class="bdetails-route__dash"></div>
+            <div class="bdetails-route__dot"></div>
+          </div>
+          <span class="bdetails-route__nonstop">Nonstop</span>
+        </div>
+
+        <div class="bdetails-route__airport bdetails-route__airport--right">
+          <span class="bdetails-route__code">
+            {{ booking.flight.arrivalAirport.code }}
+          </span>
+          <span class="bdetails-route__city">
+            {{ booking.flight.arrivalAirport.city }}
+          </span>
+          <span class="bdetails-route__country">
+            {{ booking.flight.arrivalAirport.country }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Flight details -->
+      <div class="bdetails-section">
+        <h3 class="bdetails-section__title">Flight Details</h3>
+        <div class="bdetails-grid">
+          <div class="bdetails-grid__item">
+            <span class="bdetails-grid__label">Flight Number</span>
+            <span class="bdetails-grid__value bdetails-grid__value--mono">
+              {{ booking.flight.flightNumber }}
+            </span>
+          </div>
+          <div class="bdetails-grid__item">
+            <span class="bdetails-grid__label">Cabin Class</span>
+            <span class="bdetails-grid__value">{{ booking.flight.cabinClass }}</span>
+          </div>
+          <div class="bdetails-grid__item">
+            <span class="bdetails-grid__label">Departure</span>
+            <span class="bdetails-grid__value">
+              {{ booking.flight.departureTime | date:'EEE, MMM d · HH:mm' }}
+            </span>
+          </div>
+          <div class="bdetails-grid__item">
+            <span class="bdetails-grid__label">Arrival</span>
+            <span class="bdetails-grid__value">
+              {{ booking.flight.arrivalTime | date:'EEE, MMM d · HH:mm' }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Book another -->
+      <button class="btn-primary" (click)="goHome()">Search Another Flight</button>
+    </div>
+
+    <!-- Empty state -->
+    <div *ngIf="searched && !booking && !loading && !error" class="bdetails-empty">
+      No booking found.
+    </div>
+
+  </div>
+</div>

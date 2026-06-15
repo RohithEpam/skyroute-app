@@ -1,0 +1,241 @@
+$primary: #1d4ed8;
+$primary-dark: #1e3a8a;
+$gray-border: #e5e7eb;
+
+.results-page {
+  min-height: calc(100vh - 60px);
+  background: #f0f4ff;
+  padding: 2.5rem 1rem;
+
+  &__container {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+  }
+
+  &__meta {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  &__dot {
+    color: #d1d5db;
+  }
+
+  &__back {
+    background: white;
+    border: 1px solid $gray-border;
+    color: $primary;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.4rem 0.9rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover { background: #eff6ff; }
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 5rem 0;
+    color: #9ca3af;
+
+    &-icon { font-size: 3rem; display: block; margin-bottom: 0.5rem; }
+    p { font-size: 1rem; }
+  }
+}
+
+.flight-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.flight-card {
+  background: white;
+  border-radius: 1rem;
+  border: 1px solid $gray-border;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s, transform 0.2s;
+
+  &:hover {
+    box-shadow: 0 6px 20px rgba(29, 78, 216, 0.1);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__left { flex: 1; }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  &__badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    &--global { background: #dbeafe; color: #1d4ed8; }
+    &--budget  { background: #ffedd5; color: #c2410c; }
+  }
+
+  &__number {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: #6b7280;
+  }
+
+  &__timeline {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &--right { align-items: center; }
+  }
+
+  &__hour {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  &__date {
+    font-size: 0.7rem;
+    color: #9ca3af;
+  }
+
+  &__route {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    flex: 1;
+  }
+
+  &__duration {
+    font-size: 0.7rem;
+    color: #6b7280;
+  }
+
+  &__line {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    color: #9ca3af;
+    font-size: 0.9rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  &__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #9ca3af;
+  }
+
+  &__dash {
+    flex: 1;
+    height: 1px;
+    background: #d1d5db;
+    max-width: 40px;
+  }
+
+  &__plane { color: $primary; }
+
+  &__nonstop {
+    font-size: 0.65rem;
+    color: #10b981;
+    font-weight: 600;
+  }
+
+  &__cabin {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: #6b7280;
+    background: #f3f4f6;
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.3rem;
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.3rem;
+    min-width: 140px;
+
+    @media (max-width: 600px) {
+      align-items: flex-start;
+      width: 100%;
+    }
+  }
+
+  &__total {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: $primary;
+  }
+
+  &__per {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-bottom: 0.5rem;
+  }
+
+  &__book {
+    background: $primary;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.55rem 1.25rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+
+    &:hover { background: $primary-dark; }
+  }
+}

@@ -1,0 +1,69 @@
+<div class="search-page">
+  <div class="search-page__hero">
+    <h1 class="search-page__title">Where would you like to fly?</h1>
+    <p class="search-page__subtitle">Search flights across GlobalAir & BudgetWings</p>
+  </div>
+
+  <div class="search-page__card">
+    <div *ngIf="error" class="error-box">{{ error }}</div>
+
+    <!-- Replace loading spinner with inline message inside the form -->
+    <form [formGroup]="form" (ngSubmit)="search()" class="search-form">
+
+      <div class="search-form__row search-form__row--2">
+        <div class="form-group">
+          <label>From</label>
+          <select formControlName="originAirportId">
+            <option [ngValue]="null" disabled>
+              {{ loading ? 'Loading airports...' : 'Select origin airport' }}
+            </option>
+            <option *ngFor="let a of airports" [value]="a.id">
+              {{ a.city }} ({{ a.code }}) — {{ a.country }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>To</label>
+          <select formControlName="destinationAirportId">
+            <option [ngValue]="null" disabled>
+              {{ loading ? 'Loading airports...' : 'Select destination airport' }}
+            </option>
+            <option *ngFor="let a of airports" [value]="a.id">
+              {{ a.city }} ({{ a.code }}) — {{ a.country }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div *ngIf="sameAirport" class="error-box">
+        Origin and destination cannot be the same airport.
+      </div>
+
+      <div class="search-form__row search-form__row--3">
+        <div class="form-group">
+          <label>Departure Date</label>
+          <input type="date" formControlName="departureDate" [min]="today" />
+        </div>
+        <div class="form-group">
+          <label>Passengers (1-9)</label>
+          <input type="number" formControlName="passengers" min="1" max="9" />
+          <span *ngIf="form.get('passengers')?.invalid && form.get('passengers')?.touched" class="field-error">
+            Must be between 1 and 9.
+          </span>
+        </div>
+        <div class="form-group">
+          <label>Cabin Class</label>
+          <select formControlName="cabinClass">
+            <option *ngFor="let c of cabinClasses" [value]="c">{{ c }}</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary"
+        [disabled]="form.invalid || searching || sameAirport || loading">
+        {{ searching ? 'Searching flights...' : 'Search Flights' }}
+      </button>
+
+    </form>
+  </div>
+</div>
